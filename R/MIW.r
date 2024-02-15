@@ -1,6 +1,6 @@
 #' Estimation of Mean Individual Weight (MIW) time series
 #'
-#' @param mTATB data frame
+#' @param mTATB data frame of the merged TA and TB
 #' @param GSA reference GSA for the analysis
 #' @param country reference countries in the GSA for the analysis
 #' @param depth_range range of depth strata to perform the analysis (min, max)

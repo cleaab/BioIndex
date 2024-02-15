@@ -15,9 +15,9 @@ overlayGrid(
 )
 }
 \arguments{
-\item{mTATB}{mTATB table}
+\item{mTATB}{data frame of the merged TA and TB}
 
-\item{mTATC}{mTATC table}
+\item{mTATC}{data frame of the merged TA and TC}
 
 \item{GSA}{reference GSA for the analysis}
 

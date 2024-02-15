@@ -20,11 +20,57 @@ BioIndex(
   depth_lines = c(10, 200, 800),
   strata = BioIndex::strata_scheme,
   stratification_tab = BioIndex::stratification,
+  resolution = 1,
+  buffer = 0.1,
   wd,
+  zip = TRUE,
   save = TRUE,
   verbose = TRUE
 )
 }
+\arguments{
+\item{ta}{data frame of the TA table in the MEDITS format}
+
+\item{tb}{data frame of the TB table in the MEDITS format}
+
+\item{tc}{data frame of the TC table in the MEDITS format}
+
+\item{sspp}{reference species for the analysis}
+
+\item{rec_threshold}{cutoff threshold for recruits}
+
+\item{spaw_threshold}{cutoff threshold for spawners}
+
+\item{haul_threshold}{minimum number of individuals to be used in estimation of the spatial indicaticators}
+
+\item{sexes}{reference sex for the analysis}
+
+\item{depth}{reference depth range}
+
+\item{GSA}{reference GSA for the analysis}
+
+\item{country}{reference country}
+
+\item{map_lim}{coordinates limits for the maps}
+
+\item{depth_lines}{depth contours to be plotted in the maps (3 values allowed)}
+
+\item{strata}{data frame of the reference strata for the study area}
+
+\item{stratification_tab}{data frame of the stratification scheme}
+
+\item{resolution}{resolution of the depth line}
+
+\item{buffer}{buffer around the map}
+
+\item{wd}{path of the working directory}
+
+\item{zip}{boolean. If TRUE the results are stored in a zip file into the working directory}
+
+\item{save}{boolean. If TRUE the results are stored in the working directory}
+
+\item{verbose}{boolean. If TRUE messages are promted in the console}
+}
 \description{
-BioIndex
+R code to perform analysis of trawl survey data using MEDITS file format
 }

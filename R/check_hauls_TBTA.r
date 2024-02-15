@@ -1,5 +1,7 @@
 
 #' Check presence in TB of the hauls in TA
+#' @description
+#' The function check the presence of the TB (catch data table) hauls in the TA (haul data table)
 #'
 #' @param DataTA data frame of TA table
 #' @param DataTB data frame of TB table

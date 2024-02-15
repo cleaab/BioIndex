@@ -1,6 +1,6 @@
 #' Sex ratio
 #'
-#' @param mTATB data frame
+#' @param mTATB data frame of the merged TA and TB
 #' @param GSA reference GSA for the analysis
 #' @param country vector of reference countries for the analysis
 #' @param depth_range range of depth strata to perform the analysis (min, max)
@@ -8,7 +8,7 @@
 #' @param wd working directory
 #' @param save boolean. If TRUE the plot is saved in the user defined working directory (wd)
 #' @export
-sex_ratio <- function(mTATB, GSA, country, depth_range, stratification, wd=NA, save=TRUE) {
+sex_ratio <- function(mTATB, GSA, country, depth_range, stratas, stratification, wd=NA, save=TRUE) {
 
     if (FALSE) {
         GSA=18
@@ -24,6 +24,10 @@ sex_ratio <- function(mTATB, GSA, country, depth_range, stratification, wd=NA, s
         m <- merge_TATBTC(ta, tb, tc, species="MERLMER", country="all", wd=wd, verbose=TRUE)
         mTATB <- m[[1]]
         sex_ratio(mTATB, GSA, country="all", depth_range, stratification, wd, save)
+
+
+        stratas <- strata
+        stratification <- stratification_tab
     }
 
     if (is.na(wd) & save) {
@@ -59,6 +63,7 @@ sex_ratio <- function(mTATB, GSA, country, depth_range, stratification, wd=NA, s
     ddd$NB_FM <- ddd$NB_OF_FEMALES + ddd$NB_OF_MALES
     year_range <- data.frame(year = sort(unique(merge_TATB$YEAR)))
 
+    strata_scheme <- strata
     strata_scheme <- strata_scheme[strata_scheme$GSA == GSA & strata_scheme$COUNTRY %in% as.character(unique(country_analysis))[1], ]
 
     depth <- data.frame(matrix(NA,ncol=4, nrow=length(strata_scheme$CODE)))
@@ -255,5 +260,5 @@ sex_ratio <- function(mTATB, GSA, country, depth_range, stratification, wd=NA, s
         legend("topright", c("Sex ratio"), lty=c(1,2), pch=c(16), col=c("black"))
     }
 
-
+return(timeseries)
 }

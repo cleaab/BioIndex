@@ -1,6 +1,6 @@
 #' Spearman test for timeseries
 #'
-#' @param time series
+#' @param x time series
 #' @export
 spear<-function (x){
 

@@ -1,10 +1,13 @@
 #' Bubbleplot of abundance indices for recruits and spawners
+#' @description
+#' The function generates bubbleplots of abundance indices for recruits and spawners
 #'
 #' @param mTATC mTATC table
 #' @param map_range range of coordinates for the map
 #' @param thresh_rec threshold value to select recruits data from mTATC table
 #' @param thresh_spaw threshold value to select spawners data from mTATC table
 #' @param depths three reference bathymetric lines to be plotted in the maps
+#' @param res resolution of the depth lines
 #' @param wd working directory
 #' @param save boolean. If TRUE the outputs are saved in the local folder
 #' @param verbose boolean. If TRUE messages are prompted in the console
@@ -12,7 +15,7 @@
 #' @importFrom marmap getNOAA.bathy as.xyz
 #' @importFrom ggplot2 coord_sf geom_polygon scale_x_continuous scale_y_continuous geom_contour geom_point scale_size coord_map ggtitle theme ggsave element_blank element_rect element_text map_data aes labs
 #' @importFrom stats aggregate
-bubbleplot_RS_by_hauls <- function(mTATC, map_range, thresh_rec, thresh_spaw, depths = c(50, 200, 800),wd, save = FALSE, verbose = FALSE) {
+bubbleplot_RS_by_hauls <- function(mTATC, map_range, thresh_rec, thresh_spaw, depths = c(50, 200, 800), res=1, buffer=0.1,wd, save = FALSE, verbose = FALSE) {
   if (FALSE) {
     thresh_rec <- 200
     thresh_spaw <- 210
@@ -30,14 +33,16 @@ bubbleplot_RS_by_hauls <- function(mTATC, map_range, thresh_rec, thresh_spaw, de
   sspp <- paste(GENERE, SPECIE, sep = "")
 
   depths <- -1 * depths
-  res <- 0.1
-  buff <- 0
+
 
   names(map_range) <- c("xmin", "xmax", "ymin", "ymax")
   x1 <- min(map_range[1])
   x2 <- max(map_range[2])
   y1 <- min(map_range[3])
   y2 <- max(map_range[4])
+
+  xl <- c(x1, x2)
+  yl <- c(y1, y2)
 
   map_lim <- map_range
   lx <- map_range["xmax"] - map_range["xmin"]
@@ -56,6 +61,9 @@ bubbleplot_RS_by_hauls <- function(mTATC, map_range, thresh_rec, thresh_spaw, de
 
   ddd_r <- NA
   ddd_r <- merge_TATC[merge_TATC$LENGTH_CLASS <= threshold & merge_TATC$LENGTH_CLASS != -1, ]
+
+  bath <- suppressMessages(getNOAA.bathy(lon1 = min(xl), lon2 = max(xl), lat1 = min(yl) - buff, lat2 = max(yl) + buff, resolution = res))
+  bat_xyz <- as.xyz(bath)
 
   if (nrow(ddd_r) != 0) {
     pivot_r <- aggregate(as.numeric(as.character(ddd_r$N_km2)), by = list(ddd_r$id, ddd_r$MEAN_LONGITUDE_DEC, ddd_r$MEAN_LATITUDE_DEC), sum)
@@ -81,12 +89,9 @@ bubbleplot_RS_by_hauls <- function(mTATC, map_range, thresh_rec, thresh_spaw, de
     dep_text <- expression(paste("Abundance of recruits ", (n / km^2), sep = " "))
 
     world <- map_data("world")
-    xl <- c(x1, x2)
-    yl <- c(y1, y2)
     x_breaks <- c(round(xl[1], 0), round(xl[1], 0) + round((xl[2] - xl[1]) / 2, 0), round(xl[1], 0) + 2 * round((xl[2] - xl[1]) / 2, 0))
     y_breaks <- c(round(yl[1], 0), round(yl[1], 0) + round((yl[2] - yl[1]) / 2, 0), round(yl[1], 0) + 2 * round((yl[2] - yl[1]) / 2, 0))
-    bath <- suppressMessages(getNOAA.bathy(lon1 = min(xl) - 1, lon2 = max(xl) + 1, lat1 = min(yl) - 1 - buff, lat2 = max(yl) + 1 + buff, resolution = res))
-    bat_xyz <- as.xyz(bath)
+
 
     suppressMessages(
       pr <- ggplot() +
@@ -168,10 +173,9 @@ bubbleplot_RS_by_hauls <- function(mTATC, map_range, thresh_rec, thresh_spaw, de
 
     res <- 0.1
     world <- map_data("world")
-    xl <- c(x1, x2)
-    yl <- c(y1, y2)
     x_breaks <- c(round(xl[1], 0), round(xl[1], 0) + round((xl[2] - xl[1]) / 2, 0), round(xl[1], 0) + 2 * round((xl[2] - xl[1]) / 2, 0))
     y_breaks <- c(round(yl[1], 0), round(yl[1], 0) + round((yl[2] - yl[1]) / 2, 0), round(yl[1], 0) + 2 * round((yl[2] - yl[1]) / 2, 0))
+
     # bath <- suppressMessages(getNOAA.bathy(lon1 = min(xl) - 1, lon2 = max(xl) + 1, lat1 = min(yl) - 1 - buff, lat2 = max(yl) + 1 + buff, resolution = res))
     # bat_xyz <- as.xyz(bath)
 

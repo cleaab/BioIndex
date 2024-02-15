@@ -20,5 +20,5 @@ check_numeric_range(Data, Field, Values, year, wd = NA, suffix)
 \item{suffix}{name of the log file}
 }
 \description{
-Check consistency of numeric ranges
+The function checks whether the values contained in specific fields are consistent within the allowed range of values.
 }

@@ -7,7 +7,7 @@
 spear(x)
 }
 \arguments{
-\item{time}{series}
+\item{x}{time series}
 }
 \description{
 Spearman test for timeseries

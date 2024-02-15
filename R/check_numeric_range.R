@@ -1,7 +1,6 @@
-
-
 #' Check consistency of numeric ranges
-#'
+#' @description
+#' The function checks whether the values contained in specific fields are consistent within the allowed range of values.
 #' @param Data data frame of a table in MEDITS format
 #' @param Field field of the table to be checked
 #' @param Values vector of the allowed values

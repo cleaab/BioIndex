@@ -10,6 +10,8 @@ bubbleplot_RS_by_hauls(
   thresh_rec,
   thresh_spaw,
   depths = c(50, 200, 800),
+  res = 1,
+  buffer = 0.1,
   wd,
   save = FALSE,
   verbose = FALSE
@@ -26,6 +28,8 @@ bubbleplot_RS_by_hauls(
 
 \item{depths}{three reference bathymetric lines to be plotted in the maps}
 
+\item{res}{resolution of the depth lines}
+
 \item{wd}{working directory}
 
 \item{save}{boolean. If TRUE the outputs are saved in the local folder}
@@ -33,5 +37,5 @@ bubbleplot_RS_by_hauls(
 \item{verbose}{boolean. If TRUE messages are prompted in the console}
 }
 \description{
-Bubbleplot of abundance indices for recruits and spawners
+The function generates bubbleplots of abundance indices for recruits and spawners
 }

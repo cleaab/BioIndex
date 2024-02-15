@@ -16,14 +16,6 @@
 
 merge_TATBTC <- function(ta, tb, tc, species, country="all", strata=BioIndex::strata_scheme, wd=NA, save=TRUE, verbose=TRUE) {
 
-  check_date_haul <- check_dictionary <-
-  check_hauls_TBTA <- check_numeric_range <- convert_coordinates <- hms <-
-  write.table <- NULL
-
-  TA_cols <- BioIndex::TA_cols
-  TB_cols <- BioIndex::TB_cols
-  TC_cols <- BioIndex::TC_cols
-
   if (FALSE) {
     # library(BioIndex)
     verbose=TRUE
@@ -41,12 +33,25 @@ merge_TATBTC <- function(ta, tb, tc, species, country="all", strata=BioIndex::st
     m <- merge_TATBTC(ta, tb, tc, species="MERLMER", country="all", wd=wd, verbose=TRUE)
   }
 
+
   if (is.na(wd) & save) {
     save =FALSE
     if (verbose){
       message("Missing working directory. Results are not saved in the local folder.")
     }
   }
+
+  strata_scheme <- strata
+
+  check_date_haul <- check_dictionary <-
+    check_hauls_TBTA <- check_numeric_range <- convert_coordinates <- hms <-
+    write.table <- NULL
+
+  TA_cols <- BioIndex::TA_cols
+  TB_cols <- BioIndex::TB_cols
+  TC_cols <- BioIndex::TC_cols
+
+
 
   species[2] <- substr(species,5,7)
   species[1] <- substr(species[1],1,4)

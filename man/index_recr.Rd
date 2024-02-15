@@ -17,9 +17,9 @@ index_recr(
 )
 }
 \arguments{
-\item{mTATB}{data frame}
+\item{mTATB}{data frame of the merged TA and TB}
 
-\item{mTATC}{data frame}
+\item{mTATC}{data frame of the merged TA and TC}
 
 \item{GSA}{reference GSA for the analysis}
 

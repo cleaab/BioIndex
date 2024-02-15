@@ -9,13 +9,14 @@ sex_ratio(
   GSA,
   country,
   depth_range,
+  stratas,
   stratification,
   wd = NA,
   save = TRUE
 )
 }
 \arguments{
-\item{mTATB}{data frame}
+\item{mTATB}{data frame of the merged TA and TB}
 
 \item{GSA}{reference GSA for the analysis}
 

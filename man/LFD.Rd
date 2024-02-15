@@ -18,8 +18,6 @@ LFD(
 )
 }
 \arguments{
-\item{mTATC}{data frame}
-
 \item{sex}{reference sef for the analysis. Allowed values: F, M, I, N. "all" code for combined sex}
 
 \item{GSA}{reference GSA for the analysis}
@@ -37,6 +35,8 @@ LFD(
 \item{save}{boolean. If TRUE the plot is saved in the user defined working directory (wd)}
 
 \item{verbose}{boolean. If TRUE messages are reported in the console}
+
+\item{mTATB}{data frame of the merged TA and TC}
 }
 \description{
 Length Frequency Distribution

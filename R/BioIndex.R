@@ -1,42 +1,49 @@
 #' BioIndex
 #'
-#' @param ta
-#' @param tb
-#' @param tc
-#' @param sspp
-#' @param rec_threshold
-#' @param spaw_threshold
-#' @param haul_threshold
-#' @param sexes
-#' @param depth
-#' @param GSA
-#' @param country
-#' @param map_lim
-#' @param depth_lines
-#' @param strata
-#' @param stratification_tab
-#' @param wd
-#' @param save
-#' @param verbose
+#' @description
+#' R code to perform analysis of trawl survey data using MEDITS file format
+#'
+#' @param ta data frame of the TA table in the MEDITS format
+#' @param tb data frame of the TB table in the MEDITS format
+#' @param tc data frame of the TC table in the MEDITS format
+#' @param sspp reference species for the analysis
+#' @param rec_threshold cutoff threshold for recruits
+#' @param spaw_threshold cutoff threshold for spawners
+#' @param haul_threshold minimum number of individuals to be used in estimation of the spatial indicaticators
+#' @param sexes reference sex for the analysis
+#' @param depth reference depth range
+#' @param GSA reference GSA for the analysis
+#' @param country reference country
+#' @param map_lim coordinates limits for the maps
+#' @param depth_lines depth contours to be plotted in the maps (3 values allowed)
+#' @param strata data frame of the reference strata for the study area
+#' @param stratification_tab data frame of the stratification scheme
+#' @param resolution resolution of the depth line
+#' @param buffer buffer around the map
+#' @param wd path of the working directory
+#' @param zip boolean. If TRUE the results are stored in a zip file into the working directory
+#' @param save boolean. If TRUE the results are stored in the working directory
+#' @param verbose boolean. If TRUE messages are promted in the console
 #' @export
 BioIndex <- function(ta, tb, tc, sspp,rec_threshold, spaw_threshold,
                      haul_threshold=30, sexes="all", depth, GSA, country="all",
                      map_lim,depth_lines=c(10,200,800),
                      strata=BioIndex::strata_scheme,
-                     stratification_tab = BioIndex::stratification, wd,
+                     stratification_tab = BioIndex::stratification,
+                     resolution=1, buffer=0.1, wd,zip=TRUE,
                      save=TRUE, verbose=TRUE) {
 
     if (FALSE) {
         library(BioIndex)
         wd <- "D:\\Documents and Settings\\Utente\\Documenti\\GitHub\\Test_BioIndex_package"
-        # ta <- read.table(file.path(wd,"input","TA GSA18 2017-2020.csv"),sep=";",header=TRUE)
-        # tb <- read.table(file.path(wd,"input","TB GSA18 2017-2020.csv"),sep=";",header=TRUE)
-        # tc <- read.table(file.path(wd,"input","TC GSA18 2017-2020.csv"),sep=";",header=TRUE)
+        ta <- read.table(file.path(wd,"input","TA GSA18 2017-2020.csv"),sep=";",header=TRUE)
+        tb <- read.table(file.path(wd,"input","TB GSA18 2017-2020.csv"),sep=";",header=TRUE)
+        tc <- read.table(file.path(wd,"input","TC GSA18 2017-2020.csv"),sep=";",header=TRUE)
 
         ta <- read.table(file.path(wd,"input","TA.csv"),sep=";",header=TRUE)
         tb <- read.table(file.path(wd,"input","TB.csv"),sep=";",header=TRUE)
         tc <- read.table(file.path(wd,"input","TC.csv"),sep=";",header=TRUE)
-        sspp <- "MERLMER"
+        sspp <- "MULLBAR"
         rec_threshold=200
         spaw_threshold=210
         haul_threshold=30
@@ -46,14 +53,40 @@ BioIndex <- function(ta, tb, tc, sspp,rec_threshold, spaw_threshold,
         country <- "all"
         map_lim <- c(15.5,20.0,39.8,42.5)
         depth_lines <- c(200,500,800)
-        buffer=0.5
-        res=0.1
+        buffer=0.1
+        res=1
         strata=BioIndex::strata_scheme
         stratification_tab = BioIndex::stratification
         save=TRUE
         verbose=TRUE
 
-        BioIndex(ta, tb, tc, sspp,rec_threshold=rec_threshold, spaw_threshold=spaw_threshold,sexes="all", depth=depth, GSA=GSA, country="all", map_lim=map_lim,depth_lines=depth_lines, strata=BioIndex::strata_scheme, stratification_tab = BioIndex::stratification, wd=wd, save=TRUE, verbose=TRUE)
+
+        # ta <- read.table(file.path(wd,"input","TA_Combine.csv"),sep=";",header=TRUE)
+        # tb <- read.table(file.path(wd,"input","TB_Combine.csv"),sep=";",header=TRUE)
+        # tc <- read.table(file.path(wd,"input","TC_Combine.csv"),sep=";",header=TRUE)
+        # sspp <- species <- "PSETMAX"
+        # rec_threshold=201
+        # spaw_threshold=367
+        # haul_threshold=30
+        # sexes <- "all"
+        # depth <- c(10,125)
+        # GSA <- 29
+        # country <- "TUR"
+        # map_lim <- c(26.9,42.28,40.33,46.89)
+        # depth_lines <- c(20,50,100)
+        # buffer=0.1
+        # res=1
+        # stratas=read.table("D:\\Documents and Settings\\Utente\\Documenti\\GitHub\\Test_BioIndex_package\\strata_BS.csv",sep=";",header=TRUE)
+        # stratification_tabs = read.table("D:\\Documents and Settings\\Utente\\Documenti\\GitHub\\Test_BioIndex_package\\stratification scheme_BS.csv",sep=";",header=TRUE)
+        # strata=stratas
+        # stratification = stratification_tabs
+        # depth_range=depth
+        # save=TRUE
+        # verbose=TRUE
+
+
+
+        BioIndex(ta, tb, tc, sspp,rec_threshold=rec_threshold, spaw_threshold=spaw_threshold,sexes="all", depth=depth, GSA=GSA, country="all", map_lim=map_lim,depth_lines=depth_lines, strata=stratas, stratification_tab = stratification_tabs, resolution=res, buffer=buffer, wd=wd, zip=FALSE, save=TRUE, verbose=TRUE)
     }
 
 
@@ -64,7 +97,7 @@ if (dir.exists(file.path(wd,"output"))){
 
 
 
-    m <- merge_TATBTC(ta, tb, tc, species=sspp, country=country, wd=wd, verbose=TRUE)
+    m <- merge_TATBTC(ta, tb, tc, species=sspp, country=country, wd=wd, strata=strata, verbose=TRUE)
 
     mTATB <- m[[1]]
     mTATC <- m[[2]]
@@ -74,8 +107,7 @@ if (dir.exists(file.path(wd,"output"))){
     mTATBsp <- ms[[1]]
     mTATCsp <- ms[[2]]
 
-    hauls_position(mTATB,map_lim,depth_lines, buffer=0.1, res=1, wd=wd,save, verbose)
-
+    hauls_position(mTATB,map_lim,depth_lines, buffer=buffer, res=resolution, wd=wd,save, verbose)
 
 
     #--------------------------------------------------------------
@@ -87,7 +119,7 @@ if (dir.exists(file.path(wd,"output"))){
     cat("\n")
 
     source.check <- try(
-        bubble_plot_by_haul_indexes(mTATB, map_lim,  depth_lines, buffer=0, res=0.1,wd=wd,save, verbose)
+        bubble_plot_by_haul_indexes(mTATB, map_lim,  depth_lines, buffer=0, res=resolution,wd=wd,save, verbose)
         , silent=T)
 
     if ( !is(source.check,"try-error") )  {
@@ -139,7 +171,7 @@ if (dir.exists(file.path(wd,"output"))){
             message("Not enough sex data for sex-ratio estimation")
             cat("\nSex-ratio analysis skipped\n")
         } else {
-            sex_ratio(mTATB, GSA, country=country, depth_range=depth, stratification=stratification_tab, wd, save)
+            sex_ratio(mTATB, GSA, country=country, depth_range=depth, stratas=strata, stratification=stratification_tab, wd, save)
             cat("\nSex-ratio analysis - completed\n")
         }
     } else {
@@ -347,6 +379,7 @@ if (dir.exists(file.path(wd,"output"))){
                            thresh_rec=rec_threshold,
                            thresh_spaw=spaw_threshold,
                            depths = depth_lines,
+                           res=resolution,
                            wd=wd,
                            save = save,
                            verbose = verbose)
@@ -371,7 +404,7 @@ if (dir.exists(file.path(wd,"output"))){
     #----------------
     # ZIP FILE
     #----------------
-
+if (zip){
     files <- list.files(path=file.path(wd,"output"), recursive=TRUE,full.names = TRUE, include.dirs = TRUE)
     zips <- grep(".zip",files)
     if (length(zips)> 0) {
@@ -384,4 +417,6 @@ if (dir.exists(file.path(wd,"output"))){
     unlink(file.path(wd,"output"), force=TRUE, recursive=TRUE)
 }
 
+
+}
 

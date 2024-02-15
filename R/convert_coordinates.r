@@ -1,8 +1,10 @@
 #' MEDITS coordinates in decimal degrees
+#' @description
+#' The function returns the data frame of the TA table with the coordinates expressed as decimal degrees.
 #'
-#' @param Data ddata frame of TA table
+#' @param Data data frame of TA table
 #'
-#' @return the function return the same dataframe with the coordinates converted in the decimal degrees format
+#' @return the function return the same data frame with the coordinates converted in the decimal degrees format
 #' @export convert_coordinates
 
 convert_coordinates<-function(Data)  {

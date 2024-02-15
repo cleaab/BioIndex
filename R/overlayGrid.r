@@ -1,7 +1,7 @@
 #' Overlay mTATB and mTATC on GFCM spatial grid
 #'
-#' @param mTATB mTATB table
-#' @param mTATC mTATC table
+#' @param mTATB data frame of the merged TA and TB
+#' @param mTATC data frame of the merged TA and TC
 #' @param GSA reference GSA for the analysis
 #' @param country reference countries for the analysis
 #' @param wd working directory used to save results

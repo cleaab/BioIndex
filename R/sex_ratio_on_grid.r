@@ -38,23 +38,35 @@ sex_ratio_on_grid <- function(mTATBsp, depth, wd, map_range,threshold=30,verbose
     depthstr <- depth
     depth_range <- as.numeric(str_split(depth,",")[[1]])
 
-    if (depthstr == "5,45" | depthstr == 5) {
+    if (depthstr == "5,45") {
         cgpmgrid <- terra::unwrap(stratum_0_45)
     }
 
-    if (depthstr == "5,35" | depthstr == 4) {
+    if (depthstr == "5,35") {
         cgpmgrid <- terra::unwrap(stratum_0_35)
     }
 
-    if (depthstr == "10,200" | depthstr == 1) {
+    if (depthstr == "10,125") {
+        cgpmgrid <- terra::unwrap(stratum_0_125)
+    }
+
+    if (depthstr == "5,125") {
+        cgpmgrid <- terra::unwrap(stratum_0_125)
+    }
+
+    if (depthstr == "0,125") {
+        cgpmgrid <- terra::unwrap(stratum_0_125)
+    }
+
+    if (depthstr == "10,200") {
         cgpmgrid <- terra::unwrap(stratum_0_200)
     }
 
-    if (depthstr == "10,800" | depthstr == 2) {
+    if (depthstr == "10,800") {
         cgpmgrid <- terra::unwrap(stratum_0_800)
     }
 
-    if (depthstr == "200,800" | depthstr == 3) {
+    if (depthstr == "200,800") {
         cgpmgrid <- terra::unwrap(stratum_200_800)
     }
     cgpmgrid_bkp <- cgpmgrid

@@ -1,7 +1,7 @@
 #' Estimation of abundance indices for recruits
 #'
-#' @param mTATB data frame
-#' @param mTATC data frame
+#' @param mTATB data frame of the merged TA and TB
+#' @param mTATC data frame of the merged TA and TC
 #' @param GSA reference GSA for the analysis
 #' @param country vector of reference countries for the analysis
 #' @param depth_range range of depth strata to perform the analysis (min, max)

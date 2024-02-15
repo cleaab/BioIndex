@@ -7,11 +7,11 @@
 convert_coordinates(Data)
 }
 \arguments{
-\item{Data}{ddata frame of TA table}
+\item{Data}{data frame of TA table}
 }
 \value{
-the function return the same dataframe with the coordinates converted in the decimal degrees format
+the function return the same data frame with the coordinates converted in the decimal degrees format
 }
 \description{
-MEDITS coordinates in decimal degrees
+The function returns the data frame of the TA table with the coordinates expressed as decimal degrees.
 }

@@ -1,5 +1,6 @@
-
 #' Check date consistency
+#' @description
+#' The function allows to check the consistency of date among the tables befor mergin them together.
 #'
 #' @param DataTA data frame of the TA table
 #' @param Data data frame of one table among TB, TC, TE and TL

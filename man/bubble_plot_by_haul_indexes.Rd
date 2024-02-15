@@ -33,5 +33,5 @@ bubble_plot_by_haul_indexes(
 \item{verbose}{boolean. If TRUE a message is printed}
 }
 \description{
-Bubble plot of abundance and biomass indices by haul
+The function generates bubble plot of abundance and biomass indices by haul
 }

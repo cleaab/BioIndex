@@ -20,5 +20,5 @@ check_date_haul(DataTA, Data, year, wd = NA, suffix, verbose = TRUE)
 \item{verbose}{boolean. If TRUE messages are reported in the console}
 }
 \description{
-Check date consistency
+The function allows to check the consistency of date among the tables befor mergin them together.
 }

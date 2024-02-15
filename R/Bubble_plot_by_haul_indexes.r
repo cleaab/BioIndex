@@ -1,4 +1,6 @@
 #' Bubble plot of abundance and biomass indices by haul
+#' @description
+#' The function generates bubble plot of abundance and biomass indices by haul
 #'
 #' @param mTATB data frame
 #' @param map_lim coordinates limits for the plotted map

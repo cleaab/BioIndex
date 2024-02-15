@@ -18,5 +18,5 @@ check_hauls_TBTA(DataTA, DataTB, year, wd = NA, suffix)
 \item{suffix}{name of the logfile}
 }
 \description{
-Check presence in TB of the hauls in TA
+The function check the presence of the TB (catch data table) hauls in the TA (haul data table)
 }

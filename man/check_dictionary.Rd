@@ -20,5 +20,5 @@ check_dictionary(ResultData, Field, Values, year, wd = NA, suffix)
 \item{suffix}{name of the log file}
 }
 \description{
-Check dictionary (RoME)
+The function checks whether the values contained in specific fields are consistent with the allowed values of the dictionaries.
 }
