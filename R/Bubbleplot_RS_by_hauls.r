@@ -27,6 +27,8 @@ bubbleplot_RS_by_hauls <- function(mTATC, map_range, thresh_rec, thresh_spaw, de
 
   long <- lat <- group <- V1 <- V2 <- V3 <- lon <- indices <- NULL
 
+  buff <- buffer
+
   merge_TATC <- mTATC
   GENERE <- as.character(unique(merge_TATC$GENUS)[unique(merge_TATC$GENUS) != -1])
   SPECIE <- as.character(unique(merge_TATC$SPECIES)[unique(merge_TATC$SPECIES) != -1])
@@ -85,7 +87,7 @@ bubbleplot_RS_by_hauls <- function(mTATC, map_range, thresh_rec, thresh_spaw, de
       plot.title = element_text(size = 22)
     ))
 
-    buff <- as.numeric(0)
+
     dep_text <- expression(paste("Abundance of recruits ", (n / km^2), sep = " "))
 
     world <- map_data("world")
@@ -168,7 +170,6 @@ bubbleplot_RS_by_hauls <- function(mTATC, map_range, thresh_rec, thresh_spaw, de
       plot.title = element_text(size = 22)
     ))
 
-    buff <- as.numeric(0)
     dep_text <- expression(paste("Abundance of spawners ", (n / km^2), sep = " "))
 
     res <- 0.1

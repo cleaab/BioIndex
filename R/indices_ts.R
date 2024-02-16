@@ -1,6 +1,6 @@
 #' Estimation of abundance and biomass indices
 #'
-#' @param mTATB data frame of the merged TA and TB
+#' @param mTATB data frame
 #' @param GSA reference GSA for the analysis
 #' @param country reference countries in the GSA for the analysis
 #' @param depth_range range of depth strata to perform the analysis (min, max)
@@ -121,7 +121,6 @@ indices_ts <- function(mTATB, GSA, country="all", depth_range, strata_scheme, st
     depth$strata <- strata_scheme$CODE # c(1,2,3,4,5)
     depth$min <-strata_scheme$MIN_DEPTH  # c(10,50,100,200,500)
     depth$max <-strata_scheme$MAX_DEPTH  # c(50,100,200,500,800)
-    print("Select the depth range for the analysis")
     # depth_range <- dlgInput("Depth range for the analysis: ", default="5,35",Sys.info()[""])$res
     # depth_range <- data.frame(range = strsplit(depth_range, ",")); depth_range <- as.numeric(as.character(depth_range[,1]))
     if (depth_range[2] != 800) {depth_range[2] <- depth_range[2]}
@@ -199,17 +198,17 @@ indices_ts <- function(mTATB, GSA, country="all", depth_range, strata_scheme, st
     peso_s5 <- area_s5/sum(area_s1,area_s2,area_s3,area_s4,area_s5,area_s6)
     peso_s6 <- area_s6/sum(area_s1,area_s2,area_s3,area_s4,area_s5,area_s6)
 
-    i=1
+    i=15
     for(i in 1:length(res_table_cala2[,1])) {
 
         data2 <- ddd[ddd$YEAR == res_table_cala2[i,1] , ]
 
-        if (analysis_stratum1 == T) {s1 <- data2[data2$MEAN_DEPTH > depth[1,2] & data2$MEAN_DEPTH <= depth[1,3], ]}
-        if (analysis_stratum2 == T) {s2 <- data2[data2$MEAN_DEPTH > depth[2,2] & data2$MEAN_DEPTH <= depth[2,3], ]}
-        if (analysis_stratum3 == T) {s3 <- data2[data2$MEAN_DEPTH > depth[3,2] & data2$MEAN_DEPTH <= depth[3,3], ]}
-        if (analysis_stratum4 == T) {s4 <- data2[data2$MEAN_DEPTH > depth[4,2] & data2$MEAN_DEPTH <= depth[4,3], ]}
-        if (analysis_stratum5 == T) {s5 <- data2[data2$MEAN_DEPTH > depth[5,2] & data2$MEAN_DEPTH <= depth[5,3], ]}
-        if (analysis_stratum6 == T) {s6 <- data2[data2$MEAN_DEPTH > depth[6,2] & data2$MEAN_DEPTH <= depth[6,3], ]}
+        if (analysis_stratum1 == T) {s1 <- data2[floor(data2$MEAN_DEPTH) >= depth[1,2] & floor(data2$MEAN_DEPTH) <= depth[1,3], ]}
+        if (analysis_stratum2 == T) {s2 <- data2[floor(data2$MEAN_DEPTH) > depth[2,2] & floor(data2$MEAN_DEPTH) <= depth[2,3], ]}
+        if (analysis_stratum3 == T) {s3 <- data2[floor(data2$MEAN_DEPTH) > depth[3,2] & floor(data2$MEAN_DEPTH) <= depth[3,3], ]}
+        if (analysis_stratum4 == T) {s4 <- data2[floor(data2$MEAN_DEPTH) > depth[4,2] & floor(data2$MEAN_DEPTH) <= depth[4,3], ]}
+        if (analysis_stratum5 == T) {s5 <- data2[floor(data2$MEAN_DEPTH) > depth[5,2] & floor(data2$MEAN_DEPTH) <= depth[5,3], ]}
+        if (analysis_stratum6 == T) {s6 <- data2[floor(data2$MEAN_DEPTH) > depth[6,2] & floor(data2$MEAN_DEPTH) <= depth[6,3], ]}
 
         if (analysis_stratum1 == T){
             s_n <- sum(s1[!is.na(s1$TOTAL_NUMBER_IN_THE_HAUL),"TOTAL_NUMBER_IN_THE_HAUL"])

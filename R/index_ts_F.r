@@ -1,6 +1,6 @@
 #' Estimation of abundance indices for females
 #'
-#' @param mTATB data frame of the merged TA and TB
+#' @param mTATB data frame
 #' @param GSA reference GSA for the analysis
 #' @param country_analysis vector of reference countries for the analysis
 #' @param depth_range range of depth strata to perform the analysis (min, max)
@@ -128,12 +128,12 @@ index_ts_F <- function(mTATB, GSA, country_analysis, depth_range, strata_scheme,
 
         data2 <- ddd[ddd$YEAR == res_table_cala2[i,1] , ]
 
-        if (analysis_stratum1 == T) {s1 <- data2[data2$MEAN_DEPTH > depth[1,2] & data2$MEAN_DEPTH <= depth[1,3], ]}
-        if (analysis_stratum2 == T) {s2 <- data2[data2$MEAN_DEPTH > depth[2,2] & data2$MEAN_DEPTH <= depth[2,3], ]}
-        if (analysis_stratum3 == T) {s3 <- data2[data2$MEAN_DEPTH > depth[3,2] & data2$MEAN_DEPTH <= depth[3,3], ]}
-        if (analysis_stratum4 == T) {s4 <- data2[data2$MEAN_DEPTH > depth[4,2] & data2$MEAN_DEPTH <= depth[4,3], ]}
-        if (analysis_stratum5 == T) {s5 <- data2[data2$MEAN_DEPTH > depth[5,2] & data2$MEAN_DEPTH <= depth[5,3], ]}
-        if (analysis_stratum6 == T) {s6 <- data2[data2$MEAN_DEPTH > depth[6,2] & data2$MEAN_DEPTH <= depth[6,3], ]}
+        if (analysis_stratum1 == T) {s1 <- data2[floor(data2$MEAN_DEPTH) >= depth[1,2] & floor(data2$MEAN_DEPTH) <= depth[1,3], ]}
+        if (analysis_stratum2 == T) {s2 <- data2[floor(data2$MEAN_DEPTH) > depth[2,2] & floor(data2$MEAN_DEPTH) <= depth[2,3], ]}
+        if (analysis_stratum3 == T) {s3 <- data2[floor(data2$MEAN_DEPTH) > depth[3,2] & floor(data2$MEAN_DEPTH) <= depth[3,3], ]}
+        if (analysis_stratum4 == T) {s4 <- data2[floor(data2$MEAN_DEPTH) > depth[4,2] & floor(data2$MEAN_DEPTH) <= depth[4,3], ]}
+        if (analysis_stratum5 == T) {s5 <- data2[floor(data2$MEAN_DEPTH) > depth[5,2] & floor(data2$MEAN_DEPTH) <= depth[5,3], ]}
+        if (analysis_stratum6 == T) {s6 <- data2[floor(data2$MEAN_DEPTH) > depth[6,2] & floor(data2$MEAN_DEPTH) <= depth[6,3], ]}
 
         if (analysis_stratum1 == T){
             s_n <- sum(s1[!is.na(s1$NB_OF_FEMALES),"NB_OF_FEMALES"])

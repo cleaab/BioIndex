@@ -48,7 +48,7 @@ BioIndex <- function(ta, tb, tc, sspp,rec_threshold, spaw_threshold,
         spaw_threshold=210
         haul_threshold=30
         sexes <- "all"
-        depth <- c(10,800)
+        depth <- c(10,200)
         GSA <- 18
         country <- "all"
         map_lim <- c(15.5,20.0,39.8,42.5)
@@ -59,6 +59,8 @@ BioIndex <- function(ta, tb, tc, sspp,rec_threshold, spaw_threshold,
         stratification_tab = BioIndex::stratification
         save=TRUE
         verbose=TRUE
+
+        BioIndex(ta, tb, tc, sspp,rec_threshold=rec_threshold, spaw_threshold=spaw_threshold,sexes="all", depth=depth, GSA=GSA, country="all", map_lim=map_lim,depth_lines=depth_lines, strata=strata, stratification_tab = stratification_tab, resolution=res, buffer=buffer, wd=wd, zip=TRUE, save=TRUE, verbose=TRUE)
 
 
         # ta <- read.table(file.path(wd,"input","TA_Combine.csv"),sep=";",header=TRUE)
@@ -86,7 +88,7 @@ BioIndex <- function(ta, tb, tc, sspp,rec_threshold, spaw_threshold,
 
 
 
-        BioIndex(ta, tb, tc, sspp,rec_threshold=rec_threshold, spaw_threshold=spaw_threshold,sexes="all", depth=depth, GSA=GSA, country="all", map_lim=map_lim,depth_lines=depth_lines, strata=stratas, stratification_tab = stratification_tabs, resolution=res, buffer=buffer, wd=wd, zip=FALSE, save=TRUE, verbose=TRUE)
+        # BioIndex(ta, tb, tc, sspp,rec_threshold=rec_threshold, spaw_threshold=spaw_threshold,sexes="all", depth=depth, GSA=GSA, country="all", map_lim=map_lim,depth_lines=depth_lines, strata=stratas, stratification_tab = stratification_tabs, resolution=res, buffer=buffer, wd=wd, zip=FALSE, save=TRUE, verbose=TRUE)
     }
 
 
@@ -372,13 +374,12 @@ if (dir.exists(file.path(wd,"output"))){
         message("Missing threshold value for the selected species.")
     } else {
 
-    plot_RS_analysis <- "ok"
-
     bubbleplot_RS_by_hauls(mTATC=mTATC,
                            map_range=map_lim,
                            thresh_rec=rec_threshold,
                            thresh_spaw=spaw_threshold,
                            depths = depth_lines,
+                           buffer=buffer,
                            res=resolution,
                            wd=wd,
                            save = save,
