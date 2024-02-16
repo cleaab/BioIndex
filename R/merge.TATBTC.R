@@ -216,11 +216,17 @@ merge_TATBTC <- function(ta, tb, tc, species, country="all", strata=BioIndex::st
 
   strata_scheme <- strata_scheme[strata_scheme$GSA == unique(merge_TATB$GSA) & strata_scheme$COUNTRY %in% as.character(unique(merge_TATB$COUNTRY)), ]
 
-
+i=1
   for (i in 1:l_TATB){
-
+j=1
     for (j in 1:length(strata_scheme$CODE)){
-      if  (merge_TATB$MEAN_DEPTH[i] > strata_scheme[j,4] & merge_TATB$MEAN_DEPTH[i] <= strata_scheme[j,5]) {merge_TATB$STRATUM_CODE[i] <- strata_scheme[j,3]}
+
+      if(strata_scheme[j,3]==1){
+        if  (floor(merge_TATB$MEAN_DEPTH[i]) >= strata_scheme[j,4] & floor(merge_TATB$MEAN_DEPTH[i]) <= strata_scheme[j,5]) {merge_TATB$STRATUM_CODE[i] <- strata_scheme[j,3]}
+      } else {
+        if  (floor(merge_TATB$MEAN_DEPTH[i]) > strata_scheme[j,4] & floor(merge_TATB$MEAN_DEPTH[i]) <= strata_scheme[j,5]) {merge_TATB$STRATUM_CODE[i] <- strata_scheme[j,3]}
+      }
+
     }
 
     if (nchar(merge_TATB$SHOOTING_TIME[i])==4) {hour_shooting[i] <- substr(merge_TATB$SHOOTING_TIME[i],1,2); min_shooting[i] <- substr(merge_TATB$SHOOTING_TIME[i],3,4)} else {

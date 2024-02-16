@@ -43,7 +43,7 @@ BioIndex <- function(ta, tb, tc, sspp,rec_threshold, spaw_threshold,
         ta <- read.table(file.path(wd,"input","TA.csv"),sep=";",header=TRUE)
         tb <- read.table(file.path(wd,"input","TB.csv"),sep=";",header=TRUE)
         tc <- read.table(file.path(wd,"input","TC.csv"),sep=";",header=TRUE)
-        sspp <- "MULLBAR"
+        sspp <- "MERLMER"
         rec_threshold=200
         spaw_threshold=210
         haul_threshold=30
