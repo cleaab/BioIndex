@@ -7,8 +7,9 @@
 #' @param year reference year for the analysis
 #' @param wd working directory
 #' @param suffix name of the log file
+#' @param verbose boolean. If TRUE messages are promted in the console
 #' @export
-check_numeric_range <- function(Data, Field, Values, year, wd=NA, suffix) {
+check_numeric_range <- function(Data, Field, Values, year, wd=NA, suffix,verbose=FALSE) {
 
 
   if (FALSE) {

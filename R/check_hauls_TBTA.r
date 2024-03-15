@@ -8,8 +8,9 @@
 #' @param year reference year for the analysis
 #' @param wd working directory
 #' @param suffix name of the logfile
+#' @param verbose boolean. If TRUE messages are promted in the console
 #' @export
-check_hauls_TBTA <- function(DataTA,DataTB,year,wd=NA,suffix){
+check_hauls_TBTA <- function(DataTA,DataTB,year,wd=NA,suffix, verbose=FALSE){
 
   if (FALSE){
     #library(MEDITS)

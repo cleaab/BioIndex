@@ -4,7 +4,15 @@
 \alias{check_numeric_range}
 \title{Check consistency of numeric ranges}
 \usage{
-check_numeric_range(Data, Field, Values, year, wd = NA, suffix)
+check_numeric_range(
+  Data,
+  Field,
+  Values,
+  year,
+  wd = NA,
+  suffix,
+  verbose = FALSE
+)
 }
 \arguments{
 \item{Data}{data frame of a table in MEDITS format}
@@ -18,6 +26,8 @@ check_numeric_range(Data, Field, Values, year, wd = NA, suffix)
 \item{wd}{working directory}
 
 \item{suffix}{name of the log file}
+
+\item{verbose}{boolean. If TRUE messages are promted in the console}
 }
 \description{
 The function checks whether the values contained in specific fields are consistent within the allowed range of values.

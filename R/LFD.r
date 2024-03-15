@@ -1,6 +1,6 @@
 #' Length Frequency Distribution
 #'
-#' @param mTATB data frame of the merged TA and TC
+#' @param mTATC data frame of the merged TA and TC
 #' @param sex reference sef for the analysis. Allowed values: F, M, I, N. "all" code for combined sex
 #' @param GSA reference GSA for the analysis
 #' @param country vector of reference countries for the analysis

@@ -1,6 +1,7 @@
 #' Plot of hauls time series
 #'
 #' @param mTATB data frame
+#' @param country country code as reported in MEDITS format. "all" code to perform the analysis on all the countries of the same GSA
 #' @param map_lim coordinates limits for the plotted map
 #' @param depth_lines vactor of three depth bathymetrical lines to be plotted
 #' @param buffer buffer to the coordinate limits in map units
@@ -11,9 +12,9 @@
 #' @importFrom marmap getNOAA.bathy as.xyz
 #' @importFrom ggplot2 ggplot coord_sf geom_polygon scale_x_continuous scale_y_continuous geom_contour geom_text geom_point coord_map ggtitle ggsave theme
 #' @export
-hauls_position <- function(mTATB,map_lim,depth_lines, buffer=0, res=0.1,wd=NA,save=TRUE, verbose=TRUE){
+hauls_position <- function(mTATB, country="all",map_lim,depth_lines, buffer=0, res=0.1,wd=NA,save=TRUE, verbose=TRUE){
 
-  Haul <- V1 <- V2 <- V3 <- Year <- group <- merge_TATB <- NULL # lat <- lon <- long <-
+  Haul <- V1 <- V2 <- V3 <- Year <- group <- merge_TATB <-  lat <- lon <- long <-NULL #
 
   if (FALSE) {
     map_lim <- c(15.5,20.0,39.8,42.5)
@@ -39,7 +40,36 @@ hauls_position <- function(mTATB,map_lim,depth_lines, buffer=0, res=0.1,wd=NA,sa
     }
   }
 
+
+
+
+countries <- unique(mTATB[!is.na(mTATB$COUNTRY),"COUNTRY"])
+l_country <- length(unique(mTATB$COUNTRY))
+
+if (l_country==1){
+  check_country ="Y"
+  country_analysis <- countries
+  if (verbose){
+    message(paste0("Analysis conducted for the following country: ",countries))
+  }
+} else {
+  if (any(country %in% "all")) {
+    country_analysis <<- countries
+    if (verbose){
+      message(paste0("Analysis conducted for the following countries: ",paste(countries,collapse = ", ")))
+    }
+  } else {
+    country_analysis <<- country
+    if (verbose){
+      message(paste0("Analysis conducted for the following countries: ",paste(countries,collapse = ", ")))
+    }
+  }
+}
+
+mTATB <- mTATB[mTATB$COUNTRY %in% country_analysis,  ]
+
 metaDB <- mTATB
+
 GENERE <- as.character(unique(metaDB$GENUS)[ !is.na(unique(metaDB$GENUS) != -1) & unique(metaDB$GENUS) != -1])
 SPECIE <- as.character(unique(metaDB$SPECIES)[!is.na(unique(metaDB$SPECIES) != -1) & unique(metaDB$SPECIES) != -1])
 sspp <- paste(GENERE,SPECIE, sep="")
@@ -111,19 +141,22 @@ p <- suppressMessages(
   scale_y_continuous(breaks = y_breaks) +
   geom_contour(data = bat_xyz,
                aes(x = V1, y = V2, z = V3),
-               breaks = depth_lines[3], color = "#1F618D", size = 0.5) +
+               breaks = depth_lines[3], color = "#1F618D", linewidth = 0.5) +
   geom_contour(data = bat_xyz,
                aes(x = V1, y = V2, z = V3),
-               breaks = depth_lines[2], color = "#5499C7", size = 0.5) +
+               breaks = depth_lines[2], color = "#5499C7", linewidth = 0.5) +
   geom_contour(data = bat_xyz,
                aes(x = V1, y = V2, z = V3),
-               breaks = depth_lines[1], color = "#4db5fa", size = 0.5) +
+               breaks = depth_lines[1], color = "#4db5fa", linewidth = 0.5) +
   geom_text(data=loc, aes(lon, lat, label=Haul)) +
   geom_point(data=loc, aes(lon, lat,color=Year, fill=Year)) +
   coord_map(projection="mercator",xlim = c((x1-buff),(x2+buff)), ylim = c((y1-buff),(y2+buff))) +
   ggtitle(dep_text) +
   theme_opts)
 print(p)
+
+
+
 if (save){
   if (is.na(wd)){
     warning("\nNo working directory defined by the user. The plot was not saved in the local folder\n")

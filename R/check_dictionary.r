@@ -8,9 +8,10 @@
 #' @param year reference year for the analysis
 #' @param wd working directory
 #' @param suffix name of the log file
+#' @param verbose boolean. If TRUE messages are promted in the console
 #' @export
 
-check_dictionary<-function(ResultData,Field,Values,year, wd=NA, suffix){
+check_dictionary<-function(ResultData,Field,Values,year, wd=NA, suffix,verbose=FALSE){
 
   if (FALSE){
     wd <- tempdir() #"C:\\Users\\walte\\Documents\\GitHub\\RoME\\data TEST Neglia"

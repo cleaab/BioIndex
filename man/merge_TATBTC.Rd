@@ -41,3 +41,9 @@ A list of two data frames is returned. The first element contains the TA-TB merg
 \description{
 Merge Ta-TB and TA-TC tables
 }
+\examples{
+m <- merge_TATBTC(ta=TA, tb=TB, tc=TC, species="MERLMER", country="all", wd=tempdir(), verbose=TRUE)
+mTATB <- m[[1]]
+mTATC <- m[[2]]
+
+}

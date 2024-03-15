@@ -57,3 +57,73 @@
 #' @docType data
 #' @keywords stratification MEDITS
 "stratification"
+
+
+#' centroidi
+#'
+#' @name centroidi
+#' @docType data
+#' @keywords centroidi
+"centroidi"
+
+#' cgpmgrid
+#'
+#' @name cgpmgrid
+#' @docType data
+#' @keywords cgpmgrid
+"cgpmgrid"
+
+#' continent
+#'
+#' @name continent
+#' @docType data
+#' @keywords continent
+"continent"
+
+
+#' stratum_0_125
+#'
+#' @name stratum_0_125
+#' @docType data
+#' @keywords stratum_0_125
+"stratum_0_125"
+
+#' stratum_0_200
+#'
+#' @name stratum_0_200
+#' @docType data
+#' @keywords stratum_0_200
+"stratum_0_200"
+
+
+#' stratum_0_35
+#'
+#' @name stratum_0_35
+#' @docType data
+#' @keywords stratum_0_35
+"stratum_0_35"
+
+
+#' stratum_0_45
+#'
+#' @name stratum_0_45
+#' @docType data
+#' @keywords stratum_0_45
+"stratum_0_45"
+
+
+#' stratum_0_800
+#'
+#' @name stratum_0_800
+#' @docType data
+#' @keywords stratum_0_800
+"stratum_0_800"
+
+
+#' stratum_200_800
+#'
+#' @name stratum_200_800
+#' @docType data
+#' @keywords stratum_200_800
+"stratum_200_800"
+

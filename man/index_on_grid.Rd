@@ -24,6 +24,10 @@ index_on_grid(
 \item{map_range}{range of coordinates for the map}
 
 \item{threshold}{minimum number of individuals per haul}
+
+\item{verbose}{boolean. If TRUE messages are promted in the console}
+
+\item{save}{boolean. If TRUE the results are stored in the working directory}
 }
 \description{
 Generating maps of indexes

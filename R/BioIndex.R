@@ -24,6 +24,11 @@
 #' @param zip boolean. If TRUE the results are stored in a zip file into the working directory
 #' @param save boolean. If TRUE the results are stored in the working directory
 #' @param verbose boolean. If TRUE messages are promted in the console
+#' @examples
+#' BioIndex(ta=TA, tb=TB, tc=TC, sspp="MERLMER",rec_threshold=200, spaw_threshold=210,sexes="all", depth=c(10,800), GSA=10, country="all", map_lim=c(13.3,15.2,39.9,41.3),depth_lines=c(50,200,800), strata=BioIndex::strata_scheme, stratification_tab = BioIndex::stratification, resolution=1, buffer=0.1, wd=tempdir(), zip=TRUE, save=TRUE, verbose=TRUE)
+#'
+#' @importFrom methods is
+#' @importFrom zip zip
 #' @export
 BioIndex <- function(ta, tb, tc, sspp,rec_threshold, spaw_threshold,
                      haul_threshold=30, sexes="all", depth, GSA, country="all",
@@ -34,7 +39,7 @@ BioIndex <- function(ta, tb, tc, sspp,rec_threshold, spaw_threshold,
                      save=TRUE, verbose=TRUE) {
 
     if (FALSE) {
-        library(BioIndex)
+        # library(BioIndex)
         wd <- "D:\\Documents and Settings\\Utente\\Documenti\\GitHub\\Test_BioIndex_package"
         ta <- read.table(file.path(wd,"input","TA GSA18 2017-2020.csv"),sep=";",header=TRUE)
         tb <- read.table(file.path(wd,"input","TB GSA18 2017-2020.csv"),sep=";",header=TRUE)
@@ -109,7 +114,7 @@ if (dir.exists(file.path(wd,"output"))){
     mTATBsp <- ms[[1]]
     mTATCsp <- ms[[2]]
 
-    hauls_position(mTATB,map_lim,depth_lines, buffer=buffer, res=resolution, wd=wd,save, verbose)
+    hauls_position(mTATB=mTATB, country=country ,map_lim=map_lim,depth_lines=depth_lines, buffer=buffer, res=resolution, wd=wd,save, verbose)
 
 
     #--------------------------------------------------------------
@@ -413,7 +418,7 @@ if (zip){
     }
 
     output <- file.path(wd,"output")
-    zip::zip(paste0("BioIndex_results_", paste(as.character(Sys.Date()),format(Sys.time(), "_h%Hm%Ms%OS0"),".zip",sep="")), "output" , root = wd)
+    zip(paste0("BioIndex_results_", paste(as.character(Sys.Date()),format(Sys.time(), "_h%Hm%Ms%OS0"),".zip",sep="")), "output" , root = wd)
     unlink(files , recursive=TRUE)
     unlink(file.path(wd,"output"), force=TRUE, recursive=TRUE)
 }

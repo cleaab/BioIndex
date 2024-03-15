@@ -12,7 +12,8 @@ sex_ratio(
   stratas,
   stratification,
   wd = NA,
-  save = TRUE
+  save = TRUE,
+  verbose = FALSE
 )
 }
 \arguments{
@@ -24,11 +25,15 @@ sex_ratio(
 
 \item{depth_range}{range of depth strata to perform the analysis (min, max)}
 
+\item{stratas}{data frame of the reference strata for the study area}
+
 \item{stratification}{data frame of strata surface area}
 
 \item{wd}{working directory}
 
 \item{save}{boolean. If TRUE the plot is saved in the user defined working directory (wd)}
+
+\item{verbose}{boolean. If TRUE a message is printed}
 }
 \description{
 Sex ratio

@@ -4,7 +4,15 @@
 \alias{check_dictionary}
 \title{Check dictionary (RoME)}
 \usage{
-check_dictionary(ResultData, Field, Values, year, wd = NA, suffix)
+check_dictionary(
+  ResultData,
+  Field,
+  Values,
+  year,
+  wd = NA,
+  suffix,
+  verbose = FALSE
+)
 }
 \arguments{
 \item{ResultData}{data frame in MEDITS tables}
@@ -18,6 +26,8 @@ check_dictionary(ResultData, Field, Values, year, wd = NA, suffix)
 \item{wd}{working directory}
 
 \item{suffix}{name of the log file}
+
+\item{verbose}{boolean. If TRUE messages are promted in the console}
 }
 \description{
 The function checks whether the values contained in specific fields are consistent with the allowed values of the dictionaries.

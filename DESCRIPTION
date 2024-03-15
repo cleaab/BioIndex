@@ -1,14 +1,15 @@
 Package: BioIndex
 Type: Package
 Title: collection of functions used by BioIndex software
-Version: 0.4.0
+Version: 0.4.02
 Author: Walter Zupa
 Maintainer: Walter Zupa <zupa@fondazionecoispa.org>, <walter@zupa.it>
 Description: The package is a collection of functions used by BioIndex software.
 License: GPL-3
-Depends: R (>= 4.1)
-Imports: ggplot2,sp,hms,marmap,gridExtra,reshape2,stringr, dplyr, magrittr,terra,tidyterra
+Depends: R (>= 4.1),stringr,ggplot2,tidyterra
+Imports: hms,marmap,gridExtra,reshape2, dplyr, magrittr,terra,methods,zip
 Encoding: UTF-8
 LazyData: TRUE
-Packaged: 2024-02-16 08:00:00 UTC; Walter
+LazyDataCompression:xz
+Packaged: 2024-03-15 17:00:00 UTC; Walter
 RoxygenNote: 7.2.3

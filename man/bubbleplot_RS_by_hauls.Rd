@@ -30,6 +30,8 @@ bubbleplot_RS_by_hauls(
 
 \item{res}{resolution of the depth lines}
 
+\item{buffer}{buffer around the map}
+
 \item{wd}{working directory}
 
 \item{save}{boolean. If TRUE the outputs are saved in the local folder}

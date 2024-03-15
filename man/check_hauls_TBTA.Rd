@@ -4,7 +4,7 @@
 \alias{check_hauls_TBTA}
 \title{Check presence in TB of the hauls in TA}
 \usage{
-check_hauls_TBTA(DataTA, DataTB, year, wd = NA, suffix)
+check_hauls_TBTA(DataTA, DataTB, year, wd = NA, suffix, verbose = FALSE)
 }
 \arguments{
 \item{DataTA}{data frame of TA table}
@@ -16,6 +16,8 @@ check_hauls_TBTA(DataTA, DataTB, year, wd = NA, suffix)
 \item{wd}{working directory}
 
 \item{suffix}{name of the logfile}
+
+\item{verbose}{boolean. If TRUE messages are promted in the console}
 }
 \description{
 The function check the presence of the TB (catch data table) hauls in the TA (haul data table)

@@ -16,7 +16,7 @@ index_ts_F(
 )
 }
 \arguments{
-\item{mTATB}{data frame of the merged TA and TB}
+\item{mTATB}{data frame}
 
 \item{GSA}{reference GSA for the analysis}
 

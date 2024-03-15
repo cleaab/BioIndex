@@ -4,11 +4,13 @@
 #' @param GSA reference GSA for the analysis
 #' @param country vector of reference countries for the analysis
 #' @param depth_range range of depth strata to perform the analysis (min, max)
+#' @param stratas data frame of the reference strata for the study area
 #' @param stratification data frame of strata surface area
 #' @param wd working directory
 #' @param save boolean. If TRUE the plot is saved in the user defined working directory (wd)
+#' @param verbose boolean. If TRUE a message is printed
 #' @export
-sex_ratio <- function(mTATB, GSA, country, depth_range, stratas, stratification, wd=NA, save=TRUE) {
+sex_ratio <- function(mTATB, GSA, country, depth_range, stratas, stratification, wd=NA, save=TRUE,verbose=FALSE) {
 
     if (FALSE) {
         GSA=18
@@ -63,7 +65,7 @@ sex_ratio <- function(mTATB, GSA, country, depth_range, stratas, stratification,
     ddd$NB_FM <- ddd$NB_OF_FEMALES + ddd$NB_OF_MALES
     year_range <- data.frame(year = sort(unique(merge_TATB$YEAR)))
 
-    strata_scheme <- strata
+    strata_scheme <- stratas
     strata_scheme <- strata_scheme[strata_scheme$GSA == GSA & strata_scheme$COUNTRY %in% as.character(unique(country_analysis))[1], ]
 
     depth <- data.frame(matrix(NA,ncol=4, nrow=length(strata_scheme$CODE)))

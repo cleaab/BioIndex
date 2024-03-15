@@ -8,6 +8,7 @@
 #' @param save boolean. If TRUE the outputs are saved in the local folder
 #' @param verbose boolean. If TRUE messages are prompted in the console
 #' @importFrom terra extract unwrap
+#' @importFrom stats quantile
 #' @export
 
 sex_ratio_on_grid <- function(mTATBsp, depth, wd, map_range,threshold=30,verbose=FALSE, save=FALSE) {
@@ -34,43 +35,44 @@ sex_ratio_on_grid <- function(mTATBsp, depth, wd, map_range,threshold=30,verbose
         sex_ratio_on_grid (mTATBsp, depth, wd, map_range,threshold=30,verbose=TRUE, save=TRUE)
     }
 
+    level <- category <- long <- lat <- group <- NULL
 
     depthstr <- depth
     depth_range <- as.numeric(str_split(depth,",")[[1]])
 
     if (depthstr == "5,45") {
-        cgpmgrid <- terra::unwrap(stratum_0_45)
+        cgpmgrid <- terra::unwrap(BioIndex::stratum_0_45)
     }
 
     if (depthstr == "5,35") {
-        cgpmgrid <- terra::unwrap(stratum_0_35)
+        cgpmgrid <- terra::unwrap(BioIndex::stratum_0_35)
     }
 
     if (depthstr == "10,125") {
-        cgpmgrid <- terra::unwrap(stratum_0_125)
+        cgpmgrid <- terra::unwrap(BioIndex::stratum_0_125)
     }
 
     if (depthstr == "5,125") {
-        cgpmgrid <- terra::unwrap(stratum_0_125)
+        cgpmgrid <- terra::unwrap(BioIndex::stratum_0_125)
     }
 
     if (depthstr == "0,125") {
-        cgpmgrid <- terra::unwrap(stratum_0_125)
+        cgpmgrid <- terra::unwrap(BioIndex::stratum_0_125)
     }
 
     if (depthstr == "10,200") {
-        cgpmgrid <- terra::unwrap(stratum_0_200)
+        cgpmgrid <- terra::unwrap(BioIndex::stratum_0_200)
     }
 
     if (depthstr == "10,800") {
-        cgpmgrid <- terra::unwrap(stratum_0_800)
+        cgpmgrid <- terra::unwrap(BioIndex::stratum_0_800)
     }
 
     if (depthstr == "200,800") {
-        cgpmgrid <- terra::unwrap(stratum_200_800)
+        cgpmgrid <- terra::unwrap(BioIndex::stratum_200_800)
     }
     cgpmgrid_bkp <- cgpmgrid
-    continent <- terra::unwrap(continent)
+    continent <- terra::unwrap(BioIndex::continent)
 
 
 
@@ -254,7 +256,7 @@ sex_ratio_on_grid <- function(mTATBsp, depth, wd, map_range,threshold=30,verbose
 
 
             print(p1)
-            jpeg(file=paste(wd, "/output/",sspp," - GFCM GRID Sex Ratio.jpg", sep = ""), width=25, height=25, bg="white", units="cm",res=200)
+            jpeg(filename=paste(wd, "/output/",sspp," - GFCM GRID Sex Ratio.jpg", sep = ""), width=25, height=25, bg="white", units="cm",res=200)
             print(p1)
             dev.off()
 

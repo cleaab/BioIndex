@@ -6,6 +6,7 @@
 \usage{
 hauls_position(
   mTATB,
+  country = "all",
   map_lim,
   depth_lines,
   buffer = 0,
@@ -17,6 +18,8 @@ hauls_position(
 }
 \arguments{
 \item{mTATB}{data frame}
+
+\item{country}{country code as reported in MEDITS format. "all" code to perform the analysis on all the countries of the same GSA}
 
 \item{map_lim}{coordinates limits for the plotted map}
 

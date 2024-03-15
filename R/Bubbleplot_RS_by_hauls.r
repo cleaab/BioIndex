@@ -8,6 +8,7 @@
 #' @param thresh_spaw threshold value to select spawners data from mTATC table
 #' @param depths three reference bathymetric lines to be plotted in the maps
 #' @param res resolution of the depth lines
+#' @param buffer buffer around the map
 #' @param wd working directory
 #' @param save boolean. If TRUE the outputs are saved in the local folder
 #' @param verbose boolean. If TRUE messages are prompted in the console

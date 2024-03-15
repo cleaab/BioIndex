@@ -5,17 +5,20 @@
 #' @param wd working directory
 #' @param map_range range of coordinates for the map
 #' @param threshold minimum number of individuals per haul
+#' @param verbose boolean. If TRUE messages are promted in the console
+#' @param save boolean. If TRUE the results are stored in the working directory
 #' @export
 #' @importFrom ggplot2 ggplot scale_fill_manual geom_polygon coord_sf labs xlab ylab map_data
 #' @importFrom stringr str_split
 #' @importFrom tidyterra geom_spatvector
 #' @importFrom dplyr arrange
+#' @importFrom stats quantile
 
 index_on_grid <- function(mTATBsp, stratum, wd, map_range, threshold = 30, verbose = FALSE, save = FALSE) {
   if (FALSE) {
-    library(stringr)
-    library(ggplot2)
-    library(tidyterra)
+    # library(stringr)
+    # library(ggplot2)
+    # library(tidyterra)
     verbose <- TRUE
     save <- TRUE
     map_range <- c(15, 21, 39.5, 42.5)
@@ -37,6 +40,7 @@ index_on_grid <- function(mTATBsp, stratum, wd, map_range, threshold = 30, verbo
     index_on_grid(mTATBsp, stratum, wd, map_range, threshold = 30, verbose = FALSE, save = TRUE)
   }
 
+  level <- category <- long <- lat <- group <- NULL
 
   # threshold_to_ind_weight_calc <- 30
 
@@ -44,38 +48,38 @@ index_on_grid <- function(mTATBsp, stratum, wd, map_range, threshold = 30, verbo
   depth_range <- as.numeric(str_split(stratum,",")[[1]])
 
   if (depthstr == "5,45") {
-    cgpmgrid <- terra::unwrap(stratum_0_45)
+    cgpmgrid <- terra::unwrap(BioIndex::stratum_0_45)
   }
 
   if (depthstr == "5,35") {
-    cgpmgrid <- terra::unwrap(stratum_0_35)
+    cgpmgrid <- terra::unwrap(BioIndex::stratum_0_35)
   }
 
   if (depthstr == "10,125") {
-    cgpmgrid <- terra::unwrap(stratum_0_125)
+    cgpmgrid <- terra::unwrap(BioIndex::stratum_0_125)
   }
 
   if (depthstr == "5,125") {
-    cgpmgrid <- terra::unwrap(stratum_0_125)
+    cgpmgrid <- terra::unwrap(BioIndex::stratum_0_125)
   }
 
   if (depthstr == "0,125") {
-    cgpmgrid <- terra::unwrap(stratum_0_125)
+    cgpmgrid <- terra::unwrap(BioIndex::stratum_0_125)
   }
 
   if (depthstr == "10,200") {
-    cgpmgrid <- terra::unwrap(stratum_0_200)
+    cgpmgrid <- terra::unwrap(BioIndex::stratum_0_200)
   }
 
   if (depthstr == "10,800") {
-    cgpmgrid <- terra::unwrap(stratum_0_800)
+    cgpmgrid <- terra::unwrap(BioIndex::stratum_0_800)
   }
 
   if (depthstr == "200,800") {
-    cgpmgrid <- terra::unwrap(stratum_200_800)
+    cgpmgrid <- terra::unwrap(BioIndex::stratum_200_800)
   }
   cgpmgrid_bkp <- cgpmgrid
-  continent <- terra::unwrap(continent)
+  continent <- terra::unwrap(BioIndex::continent)
 
   metaDB <- mTATBsp
   metaDB <- metaDB[metaDB$MEAN_DEPTH > depth_range[1] & metaDB$MEAN_DEPTH <= depth_range[2], ]
@@ -332,7 +336,7 @@ index_on_grid <- function(mTATBsp, stratum, wd, map_range, threshold = 30, verbo
    ylab("latitude")
 
  print(p1)
- jpeg(file=paste(wd, "/output/",sspp," - GFCM GRID ABUNDANCE.jpg", sep = ""), width=25, height=25, bg="white", units="cm",res=200)
+ jpeg(filename=paste(wd, "/output/",sspp," - GFCM GRID ABUNDANCE.jpg", sep = ""), width=25, height=25, bg="white", units="cm",res=200)
  print(p1)
  dev.off()
 
@@ -438,7 +442,7 @@ index_on_grid <- function(mTATBsp, stratum, wd, map_range, threshold = 30, verbo
     ylab("latitude")
 
   print(p2)
-  jpeg(file=paste(wd, "/output/",sspp," - GFCM GRID ABUNDANCE Inverse CV.jpg", sep = ""), width=25, height=25, bg="white", units="cm",res=200)
+  jpeg(filename=paste(wd, "/output/",sspp," - GFCM GRID ABUNDANCE Inverse CV.jpg", sep = ""), width=25, height=25, bg="white", units="cm",res=200)
   print(p2)
   dev.off()
 
@@ -562,7 +566,7 @@ index_on_grid <- function(mTATBsp, stratum, wd, map_range, threshold = 30, verbo
     ylab("latitude")
 
   print(p3)
-  jpeg(file=paste(wd, "/output/",sspp," - GFCM GRID BIOMASS.jpg", sep = ""), width=25, height=25, bg="white", units="cm",res=200)
+  jpeg(filename=paste(wd, "/output/",sspp," - GFCM GRID BIOMASS.jpg", sep = ""), width=25, height=25, bg="white", units="cm",res=200)
   print(p3)
   dev.off()
 
@@ -688,7 +692,7 @@ index_on_grid <- function(mTATBsp, stratum, wd, map_range, threshold = 30, verbo
 
   print(p4)
 
-  jpeg(file=paste(wd, "/output/",sspp," - GFCM GRID MIW.jpg", sep = ""), width=25, height=25, bg="white", units="cm",res=200)
+  jpeg(filename=paste(wd, "/output/",sspp," - GFCM GRID MIW.jpg", sep = ""), width=25, height=25, bg="white", units="cm",res=200)
   print(p4)
   dev.off()
 

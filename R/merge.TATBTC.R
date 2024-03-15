@@ -10,6 +10,11 @@
 #' @param save boolean. If TRUE the plot is saved in the user defined working directory (wd)
 #' @param verbose boolean. If TRUE a message is printed
 #' @return A list of two data frames is returned. The first element contains the TA-TB merged tables, while the second element contains the TA-TC merged tables
+#' @examples
+#' m <- merge_TATBTC(ta=TA, tb=TB, tc=TC, species="MERLMER", country="all", wd=tempdir(), verbose=TRUE)
+#' mTATB <- m[[1]]
+#' mTATC <- m[[2]]
+#'
 #' @export merge_TATBTC
 #' @importFrom hms hms
 #' @importFrom utils write.table

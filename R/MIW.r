@@ -36,7 +36,7 @@ MIW <- function(mTATB, GSA, country="all", depth_range, strata_scheme, stratific
 #-----------------------
 # MIW INDICES
 #-----------------------
-
+year <- value <- NULL
 #---- COUNTRIES
 countries <- unique(mTATB[!is.na(mTATB$COUNTRY),"COUNTRY"])
 l_country <- length(unique(mTATB$COUNTRY))
