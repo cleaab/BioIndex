@@ -144,7 +144,7 @@ merge_TATBTC <- function(ta, tb, tc, species, country="all", strata=BioIndex::st
       stop("SHOOTING_LONGITUDE in TA out of the allowed range. Please check logfile in ~/output/Logliles")
     }
     Field = "HAULING_LONGITUDE"
-    Values = c(600,4200.00)
+    Values = c(0,4200.00)
     if (!(check_numeric_range(Data = TA_year, Field, Values, year=yyy[yy], wd=paste(wd, "/output/", sep=""), suffix=suffix))) {
       stop("HAULING_LONGITUDE in TA out of the allowed range. Please check logfile in ~/output/Logliles")
     }
