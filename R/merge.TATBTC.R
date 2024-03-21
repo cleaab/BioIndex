@@ -105,9 +105,15 @@ merge_TATBTC <- function(ta, tb, tc, species, country="all", strata=BioIndex::st
     }
   } # close -->if  length(l_country)==1
 
-  TA <- TA[TA$COUNTRY %in% country_analysis & TA$VALIDITY=="V", ]
+  id_TA <- data.frame(id = paste(TA$AREA,TA$COUNTRY,TA$YEAR,"_", TA$VESSEL, TA$MONTH, TA$DAY,"_", TA$HAUL_NUMBER, sep = ""))
+  id_TB <- data.frame(id = paste(TB$AREA,TB$COUNTRY,TB$YEAR,"_", TB$VESSEL, TB$MONTH, TB$DAY,"_", TB$HAUL_NUMBER, sep = ""))
+  id_TC <- data.frame(id = paste(TC$AREA,TC$COUNTRY,TC$YEAR,"_", TC$VESSEL, TC$MONTH, TC$DAY,"_", TC$HAUL_NUMBER, sep = ""))
+
+  TA <- TA[TA$COUNTRY %in% country_analysis , ] #  & TA$VALIDITY=="V"
   TB <- TB[TB$COUNTRY %in% country_analysis , ]
   TC <- TC[TC$COUNTRY %in% country_analysis , ]
+
+  id_invalid <- id_TA$id[which(TA$VALIDITY == "I")]
 
   ##----------------
   ## RoMEBS checks
@@ -171,9 +177,7 @@ merge_TATBTC <- function(ta, tb, tc, species, country="all", strata=BioIndex::st
     }
   }
 
-  id_TA <- data.frame(id = paste(TA$AREA,TA$COUNTRY,TA$YEAR,"_", TA$VESSEL, TA$MONTH, TA$DAY,"_", TA$HAUL_NUMBER, sep = ""))
-  id_TB <- data.frame(id = paste(TB$AREA,TB$COUNTRY,TB$YEAR,"_", TB$VESSEL, TB$MONTH, TB$DAY,"_", TB$HAUL_NUMBER, sep = ""))
-  id_TC <- data.frame(id = paste(TC$AREA,TC$COUNTRY,TC$YEAR,"_", TC$VESSEL, TC$MONTH, TC$DAY,"_", TC$HAUL_NUMBER, sep = ""))
+
   colnames(TA)[which(colnames(TA) == "AREA")] <- "GSA"
   colnames(TB)[which(colnames(TB) == "AREA")] <- "GSA"
   colnames(TC)[which(colnames(TC) == "AREA")] <- "GSA"
@@ -184,6 +188,11 @@ merge_TATBTC <- function(ta, tb, tc, species, country="all", strata=BioIndex::st
   TC_merge <- cbind(id_TC,TC)
   TC_merge$GENUS <- as.character(TC_merge$GENUS)
   TC_merge$SPECIES <- as.character(TC_merge$SPECIES)
+
+  #remove invalid hauls
+  TA_merge <- TA_merge[!TA_merge$id %in% id_invalid, ]
+  TB_merge <- TB_merge[!TB_merge$id %in% id_invalid, ]
+  TC_merge <- TC_merge[!TC_merge$id %in% id_invalid, ]
 
   TA_merge <- TA_merge[,which(colnames(TA_merge) %in% TA_cols)]
   TB_merge <- TB_merge[TB_merge$GENUS == species[1] & TB_merge$SPECIES == species[2], which(colnames(TB_merge) %in% TB_cols)]

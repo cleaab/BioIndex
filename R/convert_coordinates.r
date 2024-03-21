@@ -30,5 +30,21 @@ convert_coordinates<-function(Data)  {
   Data$lon_start = lon_start2
   Data$lat_end = lat_end2
   Data$lon_end = lon_end2
+
+  # quadrant 3
+  Data[Data$SHOOTING_QUADRANT == 3, "lat_start"] <- -1 * Data[Data$SHOOTING_QUADRANT == 3, "lat_start"]
+  Data[Data$HAULING_QUADRANT == 3, "lat_end"] <- -1 * Data[Data$HAULING_QUADRANT == 3, "lat_end"]
+
+  # quadrant 5
+  Data[Data$SHOOTING_QUADRANT == 5, "lat_start"] <- -1 * Data[Data$SHOOTING_QUADRANT == 5, "lat_start"]
+  Data[Data$HAULING_QUADRANT == 5, "lat_end"] <- -1 * Data[Data$HAULING_QUADRANT == 5, "lat_end"]
+
+  Data[Data$SHOOTING_QUADRANT == 5, "lon_start"] <- -1 * Data[Data$SHOOTING_QUADRANT == 5, "lon_start"]
+  Data[Data$HAULING_QUADRANT == 5, "lon_end"] <- -1 * Data[Data$HAULING_QUADRANT == 5, "lon_end"]
+
+  # quadrant 7
+  Data[Data$SHOOTING_QUADRANT == 7, "lon_start"] <- -1 * Data[Data$SHOOTING_QUADRANT == 7, "lon_start"]
+  Data[Data$HAULING_QUADRANT == 7, "lon_end"] <- -1 * Data[Data$HAULING_QUADRANT == 7, "lon_end"]
+
   return(Data)
 }
