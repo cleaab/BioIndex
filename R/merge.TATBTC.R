@@ -35,7 +35,15 @@ merge_TATBTC <- function(ta, tb, tc, species, country="all", strata=BioIndex::st
     # load("D:\\Documents and Settings\\Utente\\Documenti\\GitHub\\BioIndex\\- Pacchetto R BioIndex -\\BioIndex\\data\\TC_cols.rda")
     species <- "MERLMER"
 
-    m <- merge_TATBTC(ta, tb, tc, species="MERLMER", country="all", wd=wd, verbose=TRUE)
+
+
+
+    ta <- read.table(file.path(wd,"input","medits_ta_1.csv"),sep=";",header=TRUE)
+    tb <- read.table(file.path(wd,"input","medits_tb_1.csv"),sep=";",header=TRUE)
+    tc <- read.table(file.path(wd,"input","medits_tc_1.csv"),sep=";",header=TRUE)
+
+
+    m <- merge_TATBTC(ta, tb, tc, species="PAPELON", country="all", wd=wd, verbose=TRUE)
   }
 
 
@@ -106,8 +114,9 @@ merge_TATBTC <- function(ta, tb, tc, species, country="all", strata=BioIndex::st
   ##----------------
   suffix <- paste(as.character(Sys.Date()),format(Sys.time(), "_time_h%Hm%Ms%OS0"),sep="")
   yyy <- sort(unique(TA$YEAR))
-  yy <- 1
+  yy <- 28
   for (yy in 1:length(yyy)) {
+    # print(yy)
     TA_year <- TA[TA$YEAR==yyy[yy], ]
     TB_year <- TB[TB$YEAR==yyy[yy], ]
     TC_year <- TC[TC$YEAR==yyy[yy], ]
