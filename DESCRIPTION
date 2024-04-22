@@ -1,7 +1,7 @@
 Package: BioIndex
 Type: Package
 Title: collection of functions used by BioIndex software
-Version: 0.4.03
+Version: 0.4.04
 Author: Walter Zupa
 Maintainer: Walter Zupa <zupa@fondazionecoispa.org>, <walter@zupa.it>
 Description: The package is a collection of functions used by BioIndex software.

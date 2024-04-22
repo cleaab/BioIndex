@@ -1,2 +1,2 @@
-# BioIndex v0.1.3
-  * addressing missing working directory in saving
+# BioIndex v0.4.04
+  * added IUT functions
