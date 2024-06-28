@@ -290,7 +290,7 @@ index_spawn <- function(mTATB,mTATC, GSA, country, depth_range, cutoff, stratifi
         if (save) {
         write.table(timeseries, paste(wd,"/output/",main,"_Timeseries.csv", sep=""), sep=";", row.names = F)
 
-            tiff(paste(wd,"/output/",main,"_Timeseries.tiff",sep=""), res = 300, width = 8, height = 7, units = 'in', compression = 'lzw', pointsize = 1/300)
+            jpeg(paste(wd,"/output/",main,"_Timeseries.jpg",sep=""), res = 300, width = 8, height = 7, units = 'in')
             par(mfrow=c(1,1),oma=c(1,1,1,1), mgp=c(2, 1,0))
             plot(timeseries[,"year"],  timeseries[,"abundance"], type="b", col="black", pch=16, xlab="year", ylim=c(0,max_index*1.2), ylab=dep_text, main=main.lab) # ylim=c(0,max_index*1.2)
             lines(timeseries[,"year"], (timeseries[,"abundance"]-1.96*timeseries[,"sd"]), type="l",lty=2, col="red" )

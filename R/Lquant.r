@@ -101,7 +101,7 @@ lines(t[,1], (t[,5]-1.96*t[,6]), type="l",lty=2, col="red" )
 lines(t[,1], (t[,5]+1.96*t[,6]), type="l",lty=2, col="red" )
 legend("topright", c("time series", "CI"), lty=c(1,1), pch=c(16, NA), col=c("black","red"))
 
-tiff(paste(wd,"/output/L50_Timeseries.tiff",sep=""), res = 300, width = 8, height = 7, units = 'in', compression = 'lzw', pointsize = 1/300)
+jpeg(paste(wd,"/output/L50_Timeseries.jpg",sep=""), res = 300, width = 8, height = 7, units = 'in')
    plot(t[,1],  t[,2], type="b", col="black", pch=16, xlab="year", ylab="L50 (mm)", ylim=rL50) # ylim=c(0,max_index*1.2), ylab=dep_text, main=main.lab # ylim=c(0,max_index*1.2)
    lines(t[,1], (t[,2]-1.96*t[,3]), type="l",lty=2, col="red" )
    lines(t[,1], (t[,2]+1.96*t[,3]), type="l",lty=2, col="red" )
@@ -109,7 +109,7 @@ tiff(paste(wd,"/output/L50_Timeseries.tiff",sep=""), res = 300, width = 8, heigh
 dev.off()
 
 
-tiff(paste(wd,"/output/L95_Timeseries.tiff",sep=""), res = 300, width = 8, height = 7, units = 'in', compression = 'lzw', pointsize = 1/300)
+jpeg(paste(wd,"/output/L95_Timeseries.jpg",sep=""), res = 300, width = 8, height = 7, units = 'in')
    plot(t[,1],  t[,5], type="b", col="black", pch=16, xlab="year", ylab="L95 (mm)", ylim=rL95) # ylim=c(0,max_index*1.2), ylab=dep_text, main=main.lab # ylim=c(0,max_index*1.2)
    lines(t[,1], (t[,5]-1.96*t[,6]), type="l",lty=2, col="red" )
    lines(t[,1], (t[,5]+1.96*t[,6]), type="l",lty=2, col="red" )

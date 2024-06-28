@@ -247,7 +247,7 @@ sex_ratio <- function(mTATB, GSA, country, depth_range, stratas, stratification,
     if (save){
         write.table(timeseries, paste(wd,"/output/",main,"_Timeseries.csv", sep=""), sep=";", row.names = F)
 
-        tiff(paste(wd,"/output/",main,"_Timeseries.tiff",sep=""), res = 300, width = 8, height = 7, units = 'in', compression = 'lzw', pointsize = 1/300)
+        jpeg(paste(wd,"/output/",main,"_Timeseries.jpg",sep=""), res = 300, width = 8, height = 7, units = 'in')
         par(mfrow=c(1,1),oma=c(1,1,1,1), mgp=c(2, 1,0))
         plot(timeseries[,1],  timeseries[,4], type="b", col="black", pch=16, xlab="year", ylim=c(0,max_index*1.2), ylab="sex ratio (FF/(FF+MM))", main=main.lab) # ylim=c(0,max_index*1.2)
         lines(timeseries[,1], (timeseries[,4]-1.96*sqrt(timeseries[,5])), type="l",lty=2, col="red" )
