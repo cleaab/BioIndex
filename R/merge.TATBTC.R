@@ -237,7 +237,7 @@ merge_TATBTC <- function(ta, tb, tc, species, country="all", strata=BioIndex::st
   hour_hauling <- 0
   min_hauling <- 0
 
-  strata_scheme <- strata_scheme[strata_scheme$GSA == unique(merge_TATB$GSA) & strata_scheme$COUNTRY %in% as.character(unique(merge_TATB$COUNTRY)), ]
+  strata_scheme <- strata_scheme[strata_scheme$GSA %in% unique(merge_TATB$GSA) & strata_scheme$COUNTRY %in% as.character(unique(merge_TATB$COUNTRY)), ]
 
 i=1
   for (i in 1:l_TATB){
