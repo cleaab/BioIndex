@@ -410,18 +410,18 @@ if (dir.exists(file.path(wd,"output"))){
     #----------------
     # ZIP FILE
     #----------------
-if (zip){
-    files <- list.files(path=file.path(wd,"output"), recursive=TRUE,full.names = TRUE, include.dirs = TRUE)
-    zips <- grep(".zip",files)
-    if (length(zips)> 0) {
-        files <- files[-zips]
-    }
-
-    output <- file.path(wd,"output")
-    zip(paste0("BioIndex_results_", paste(as.character(Sys.Date()),format(Sys.time(), "_h%Hm%Ms%OS0"),".zip",sep="")), "output" , root = wd)
-    unlink(files , recursive=TRUE)
-    unlink(file.path(wd,"output"), force=TRUE, recursive=TRUE)
-}
+# if (zip){
+#     files <- list.files(path=file.path(wd,"output"), recursive=TRUE,full.names = TRUE, include.dirs = TRUE)
+#     zips <- grep(".zip",files)
+#     if (length(zips)> 0) {
+#         files <- files[-zips]
+#     }
+#
+#     output <- file.path(wd,"output")
+#     zip(paste0("BioIndex_results_", paste(as.character(Sys.Date()),format(Sys.time(), "_h%Hm%Ms%OS0"),".zip",sep="")), "output" , root = wd)
+#     unlink(files , recursive=TRUE)
+#     unlink(file.path(wd,"output"), force=TRUE, recursive=TRUE)
+# }
 
 
 }
